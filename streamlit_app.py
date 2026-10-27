@@ -152,15 +152,15 @@ st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
 
 
 # ── 2. CACHED DATA WRAPPERS WITH STREAMLIT CACHING ──
-@st.cache_data(ttl=25, show_spinner=False)
+@st.cache_data(ttl=60, show_spinner=False)
 def get_cached_market_data(index_name: str = "NIFTY") -> Dict[str, Any]:
     return ms.fetch_nse_market_data(index=index_name)
 
-@st.cache_data(ttl=25, show_spinner=False)
+@st.cache_data(ttl=60, show_spinner=False)
 def get_cached_volume_gainers() -> Dict[str, Any]:
     return ms.fetch_volume_gainers()
 
-@st.cache_data(ttl=30, show_spinner=False)
+@st.cache_data(ttl=60, show_spinner=False)
 def get_cached_orb_screener(index_name: str = "NIFTY") -> Dict[str, Any]:
     return ms.scan_orb_945(index=index_name)
 
@@ -168,7 +168,7 @@ def get_cached_orb_screener(index_name: str = "NIFTY") -> Dict[str, Any]:
 def get_cached_chart_data(symbol: str, interval: str, range_val: str, exchange: str) -> Dict[str, Any]:
     return ms.fetch_chart_data(symbol, interval, range_val, exchange)
 
-@st.cache_data(ttl=20, show_spinner=False)
+@st.cache_data(ttl=60, show_spinner=False)
 def get_cached_option_chain(symbol: str, expiry: Optional[str]) -> Dict[str, Any]:
     return compute_option_chain(symbol=symbol, expiry=expiry)
 

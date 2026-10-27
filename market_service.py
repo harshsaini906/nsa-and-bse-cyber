@@ -24,6 +24,12 @@ except ImportError:
     import requests
     USE_CURL_CFFI = False
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 IST = timezone(timedelta(hours=5, minutes=30))
 
 # ── SECRET / CONFIG RESOLVER ──
@@ -31,19 +37,19 @@ def get_secret(key: str, default: Any = None) -> Any:
     """
     Safely retrieves a configuration key or API secret.
     Priority order:
-    1. Streamlit secrets (st.secrets) if running in Streamlit
-    2. Environment variables (os.environ)
+    1. Environment variables (.env loaded into os.environ)
+    2. Streamlit secrets fallback (st.secrets)
     3. Default value
     """
+    val = os.environ.get(key)
+    if val is not None and str(val).strip() != "":
+        return val
     try:
         import streamlit as st
         if hasattr(st, "secrets") and key in st.secrets:
             return st.secrets[key]
     except Exception:
         pass
-    val = os.environ.get(key)
-    if val is not None:
-        return val
     return default
 
 

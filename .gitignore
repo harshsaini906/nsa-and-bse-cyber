@@ -36,6 +36,8 @@ venv.bak/
 .env
 .env.local
 .env.*.local
+.streamlit/secrets.toml
+!.streamlit/secrets.toml.example
 
 # SQLite Databases & Local runtime state
 data/*.db
