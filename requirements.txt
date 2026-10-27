@@ -1,0 +1,11 @@
+# TradingAI - Streamlit Community Cloud Production Dependencies
+streamlit>=1.30.0
+plotly>=5.18.0
+streamlit-autorefresh>=1.0.1
+curl_cffi>=0.7.0
+requests>=2.31.0
+pandas>=2.1.0
+numpy>=1.26.0
+yfinance>=0.2.38
+python-dotenv>=1.0.0
+psutil>=5.9.0
